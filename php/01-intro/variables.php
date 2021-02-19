@@ -5,7 +5,7 @@
 
 $name = "Peter";    // string (can be defined with double (") or single (') quotes
 $age = 34;          // integer
-$salary = 1450.34;   // float
+$salary = 1450.34;  // float
 $married = false;   // boolean
 
 // Arrays

@@ -9,13 +9,7 @@
 <h1>LOGO</h1>
 <div>
     <ul>
-        <li>
-            <?php if($title == "Home") {?>
-            <a href="home.php">Home</a>
-            <?php } else {?>
-            Home
-            <?php } ?>
-        </li>
+        <li><a href="home.php">Home</a></li>
         <li><a href="services.php">Services</a></li>
         <li><a href="contact.php">Contact</a></li>
     </ul>
