@@ -3,7 +3,7 @@ $upload_dir = "uploads/";
 $upload_file = $upload_dir . basename($_FILES["newimage"]["name"]);
 $ok = true;
 $max_size = 500000; // 500kb
-$imageFileType = strtolower(pathinfo($upload_file,PATHINFO_EXTENSION));
+$extension = strtolower(pathinfo($upload_file,PATHINFO_EXTENSION));
 $message = "";
 
 // Is it an image file?
@@ -29,8 +29,8 @@ if ($_FILES["newimage"]["size"] > $max_size) {
     $ok = false;
 }
 
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
+if($extension != "jpg" && $extension != "png" && $extension != "jpeg"
+    && $extension != "gif" ) {
     $message .= "ERROR: only JPG, JPEG, PNG & GIF images supported<br>";
     $ok = false;
 }
