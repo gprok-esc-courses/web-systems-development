@@ -16,7 +16,7 @@
                     <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
                     <?php if(isset($_SESSION['memories_id'])) { ?>
                         <a class="nav-link" href="logout.php">Logout</a>
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="profile.php">Profile</a>
                     <?php } else { ?>
                         <a class="nav-link" href="login.php">Login</a>
                         <a class="nav-link" href="#">Register</a>
