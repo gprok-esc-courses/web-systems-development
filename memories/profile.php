@@ -9,11 +9,13 @@ if(!isset($_SESSION['memories_id'])) {
 
 <h1>Profile of <?=$_SESSION['memories_username'];?></h1>
 
+<div style="border: solid 1px black;">
 <form method="post" action="add_memory.php" enctype="multipart/form-data">
     <input type="file" name="memory">
     <textarea name="description"></textarea>
     <input type="submit" value="Add">
 </form>
+</div>
 
 <?php
 $result = $conn->query("SELECT * FROM images WHERE user_id={$_SESSION['memories_id']} ORDER BY id DESC");

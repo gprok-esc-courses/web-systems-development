@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1 id="counter">0</h1>
+    <button onclick="increaseCounter()">Click Me</button>
+    <button onclick="resetCounter()">Reset</button>
+
+
+    <script>
+        function increaseCounter() {
+            let counter = document.getElementById("counter").innerText;
+            counter++;
+            document.getElementById("counter").innerText = counter;
+            console.log(counter);
+        }
+
+        function resetCounter() {
+            document.getElementById("counter").innerText = '0';
+        }
+    </script>
+
+</body>
+</html>

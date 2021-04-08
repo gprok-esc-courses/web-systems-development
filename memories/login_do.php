@@ -16,11 +16,13 @@ if(isset($_POST['submit'])) {
             die();
         }
         else {
+            $_SESSION['memories_error'] = "Wrong Password";
             header("Location: login.php");
             die();
         }
     }
     else {
+        $_SESSION['memories_error'] = "Wrong Username";
         header("Location: login.php");
         die();
     }
