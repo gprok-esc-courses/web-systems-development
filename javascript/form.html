@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="test.php" onsubmit="return checkForm()">
+    <input type="text" name="username" id="username">
+    <input type="submit">
+</form>
+
+<script>
+    function checkForm() {
+        let username = document.getElementById("username").value;
+        console.log(username);
+        if(username.length >= 8) {
+            return true;
+        }
+        else {
+            alert("Username must have at least 8 characters")
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>
