@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <style>
+        li span {
+            text-decoration: underline;
+            color: blue;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="getTasks()">
+    <h1>Todo List</h1>
+
+    <div>
+        <form id="task-form">
+            <input type="text" name="task" id="task" placeholder="Add task">
+            <input type="submit">
+        </form>
+    </div>
+
+    <div>
+        <ul id="tasks">
+
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("task-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let task = document.getElementById("task").value;
+            let formData = new FormData();
+            formData.append('task', task);
+            fetch('server/api.php?action=add', {body: formData, method: 'post'})
+                .then(response => response.json())
+                .then(data => actionAfterUpdate(data))
+        })
+
+        function actionAfterUpdate(data) {
+            document.getElementById("task").value = "";
+            if(data['result'] == "success") {
+                getTasks();
+            }
+        }
+
+        function getTasks() {
+            fetch('server/api.php?action=all')
+                .then(response => response.json())
+                .then(data => displayTasks(data))
+        }
+
+        function displayTasks(data) {
+            taskList = "";
+            data.forEach(function(task) {
+                taskList += "<li>" + task['title'] +
+                    " <span onclick=''>x</span></li>";
+            });
+            document.getElementById("tasks").innerHTML = taskList;
+        }
+    </script>
+
+</body>
+</html>
