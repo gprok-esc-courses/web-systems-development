@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Functions</title>
+</head>
+<body>
+
+    <script>
+        let students = [
+            {'name': 'Bob Noyce', 'major': 'Computer Science', 'credits': 24},
+            {'name': 'Sigmund Froyd', 'major': 'Psychology', 'credits': 36},
+            {'name': 'Lee Iacocca', 'major': 'Management', 'credits': 22},
+            {'name': 'Ada Lovelace', 'major': 'Computer Science', 'credits': 40},
+            {'name': 'Henry Ford', 'major': 'Management', 'credits': 23},
+            {'name': 'Carl Jung', 'major': 'Psychology', 'credits': 14},
+            {'name': 'Charles Babbage', 'major': 'Computer Science', 'credits': 34},
+        ];
+
+        students.forEach(function (student) {
+            console.log(student);
+        })
+
+        students.forEach(student => {
+            console.log(student['name'])
+            document.write("<li>" + student['name'] + "</li>")
+        })
+
+        students.map(student => {
+            student['credits'] += 4;
+            return student;
+        })
+        console.log(students)
+        let names = students.map(student => {return student['name']}).join('; ')
+        console.log(names)
+
+        for(let i = 0; i < students.length; i++) {
+            students[i]['credits'] += 5;
+        }
+        console.log(students)
+
+        let csStudents = students.filter(student => {
+            return student['major'] == 'Computer Science'
+        })
+        console.log(csStudents)
+
+        let majorStudents = students.reduce(function(totals, student) {
+            let major = student['major'];
+            if(!totals[major]) {
+                totals[major] = 1
+            }
+            else {
+                totals[major]++;
+            }
+            return totals;
+        }, {})
+        console.log(majorStudents)
+
+        let averageCredit = students.reduce((sum, student) => {
+            sum += student['credits']
+            return sum
+        }, 0) / students.length
+        console.log("AVERAGE: " + averageCredit.toFixed(2))
+
+        let lessThan20 = students.some(student => student['credits'] < 20)
+        console.log("< 20: " + lessThan20)
+        let moreThan40 = students.some(student => student['credits'] >= 40)
+        console.log("> 40: " + moreThan40)
+
+
+        // var or let
+        var a = 5
+        let b = 5
+
+        if(a > 0) {
+            var a = 7
+            let b = 8
+        }
+
+        console.log(a)
+        console.log(b)
+
+
+    </script>
+
+</body>
+</html>
