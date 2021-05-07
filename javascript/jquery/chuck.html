@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuck Norris Jokes</title>
+</head>
+<body>
+    <h1>Jokes</h1>
+    <div>
+        <button id="joke-btn">Get Joke</button>
+        <button id="save-btn">Save</button>
+    </div>
+    <h2 id="joke"></h2>
+    <div>
+        <ul id="saved"></ul>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            let saved = []
+            $("#joke-btn").click(() => {
+                $.ajax({
+                    url: 'https://api.chucknorris.io/jokes/random',
+                    dataType: 'json',
+                    success: (result) => {
+                        $("#joke").html(result.value)
+                    },
+                    error: (err, exception) => {
+                        $("#joke").html("Error " + err.status)
+                    }
+                })
+            })
+            $("#save-btn").click(() => {
+                let joke = $("#joke").text()
+                if(joke && !saved.includes(joke)) {
+                    let savedJokes = ""
+                    saved.push(joke);
+                    saved.forEach(joke => savedJokes += "<li class='savedJoke'>" + joke + "</li>")
+                    $("#saved").html(savedJokes)
+                }
+            })
+            $(document).on('click', '.savedJoke', function() {
+                let index = saved.indexOf($(this).text())
+                saved.splice(index, 1)
+                $(this).hide()
+            })
+        })
+
+    </script>
+</body>
+</html>
